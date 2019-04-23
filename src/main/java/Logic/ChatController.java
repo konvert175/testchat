@@ -23,15 +23,20 @@ public class ChatController {
     }
     @RequestMapping(value="/result", method=RequestMethod.GET)
     public String resultForm(Model model) {
-        model.addAttribute("chatuser", new ChatUser());
+        model.addAttribute("chatuser", new ChatUser()).addAttribute("mess", new Messages());
         return "result";
     }
 
     @RequestMapping(value="/result", method=RequestMethod.POST)
     public String resultSubmit(@ModelAttribute ChatUser chatuser, Model model) {
-        model.addAttribute("chatuser", chatuser);
+        model.addAttribute("chatuser", chatuser).addAttribute("mess", new Messages());
 
         return "result";
     }
 
+    @RequestMapping(value="/mesq", method=RequestMethod.GET)
+    public String mesqForm(Model model) {
+        model.addAttribute("mess", new Messages());
+        return "mesq";
+    }
 }

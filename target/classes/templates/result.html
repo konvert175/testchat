@@ -10,6 +10,9 @@
 
 <p th:text="'Message: ' + ${chatuser.message}" />
 
+<!--<p th:text="'Login: ' + ${mess.mes}" />
+-->
+
 <form action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
     <!-- <p>Login: <input type="text" th:field="*{login}" /></p>-->
     <p>Введите сообщение: <input type="text" th:field="*{message}" /></p>
