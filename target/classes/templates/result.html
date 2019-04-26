@@ -6,18 +6,38 @@
 </head>
 <body>
 <h1>Комната чата</h1>
-<p th:text="'Login: ' + ${chatuser.login}" />
 
-<p th:text="'Message: ' + ${chatuser.message}" />
 
-<!--<p th:text="'Login: ' + ${mess.mes}" />
--->
 
 <form action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
-    <!-- <p>Login: <input type="text" th:field="*{login}" /></p>-->
-    <p>Введите сообщение: <input type="text" th:field="*{message}" /></p>
+    <p th:text="'chatuser.login: ' + ${chatuser.login}" />
+
+    <p th:text="'chatuser.message: ' + ${chatuser.message}" />
+
+    <p th:text="'Mess.mes: ' + ${mess.mes}" />
+
+
+    <p>Login: <input type="text" th:field="*{login}"  /></p><!-- -->
+    <p>chatuser.message: <input type="text" th:field="*{message}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
+
+<div>
+    <table border="0">
+        <tr>
+            <th>First Name       </th>
+            <th>Last Name        </th>
+        </tr>
+        <tr th:each ="person : ${persons}">
+            <td th:utext="${person.login}">...</td>
+            <td th:utext="${person.message}">...</td>
+        </tr>
+    </table>
+</div>
+
+[# th:each="person : ${persons}"]
+- [(${person.id})]. _____: [(${person.message})] EUR/kg
+[/]
 
 <a href="/welcome">Войти под еще одним пользователем</a>
 </body>
