@@ -2,13 +2,16 @@ package Logic;
 
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedList;
+import java.util.Date;
+
 
 @Component
 public class Messages {
-    private String mes="5555555555555";
+    private String mes;
     public Messages() {
-        System.out.println(Counter.getNum() + " Messages конструктор");
+        Date NowDate = new Date();
+        mes = NowDate.toString();
+        System.out.println(Counter.getNum() + " Messages конструктор "+ mes);
     }
     public String getMes() {
         System.out.println(Counter.getNum()+" Messages getMes");

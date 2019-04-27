@@ -12,12 +12,7 @@ import java.util.List;
 @Controller
 public class ChatController {
 
-    private static List<ChatUser> persons = new ArrayList<ChatUser>();
-
-    static {
-        persons.add(new ChatUser("login1", "hi"));
-        persons.add(new ChatUser("login2", "hi!"));
-    }
+    List<ChatUser> persons = new ArrayList<ChatUser>();
 
     ChatUser CUser = new ChatUser();
     @RequestMapping(value="/welcome", method=RequestMethod.GET)

@@ -1,43 +1,49 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handing Form Submission</title>
+    <title>Chat</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" >
+
 </head>
 <body>
 <h1>Комната чата</h1>
 
-
-
+<div th:switch="${chatuser.login}">
+    <p th:case="'admin'">administrator</p>
+    <p th:case="*">User</p>
+</div>
+<!-- -->
 <form action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
-    <p th:text="'chatuser.login: ' + ${chatuser.login}" />
+    <h2> <p th:text="'Логин ' + ${chatuser.login}"  /></h2>
 
-    <p th:text="'chatuser.message: ' + ${chatuser.message}" />
+    <!--    <p th:text="'chatuser.message: ' + ${chatuser.message}" />-->
 
-    <p th:text="'Mess.mes: ' + ${mess.mes}" />
+        <small> <p  th:text="'Mess.mes: ' + ${mess.mes}" /> </small>
 
 
-    <p>Login: <input type="text" th:field="*{login}"  /></p><!-- -->
+        <p> <input type="text" th:field="*{login}" hidden /></p><!-- -->
     <p>chatuser.message: <input type="text" th:field="*{message}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 
 <div>
-    <table border="0">
-        <tr>
-            <th>First Name       </th>
-            <th>Last Name        </th>
-        </tr>
+    <table border="1" width="90%">
         <tr th:each ="person : ${persons}">
-            <td th:utext="${person.login}">...</td>
-            <td th:utext="${person.message}">...</td>
-        </tr>
-    </table>
-</div>
+            <td th:utext="${person.login}">...  </td>
+            <!-- <td th:utext="${person.message}">...</td>-->
+            <!-- <td th:if="${person.login} != ${chatuser.login}"  th:text="${person.message}"> </td>-->
+            <td th:switch="${person.login}">
+                <p th:case="${chatuser.login}">.  </p>
+                <p th:case="*" th:text="${person.message}">                                         </p>        </td>
+            <td th:if="${person.login} == ${chatuser.login}"  th:text="${person.message}">  </td>
+            </tr>
+        </table>
+    </div>
 
 
 
 
-<a href="/welcome">Войти под еще одним пользователем</a>
-</body>
-</html>
+    <a href="/welcome">Войти под еще одним пользователем</a>
+    </body>
+    </html>
