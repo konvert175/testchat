@@ -20,6 +20,7 @@ public class ChatController {
         model.addAttribute("chatuser", CUser).addAttribute("mess", new Messages());
         model.addAttribute("persons", persons);
         System.out.println(Counter.getNum()+" welcome get");
+
         return "welcome";
     }
 
@@ -27,10 +28,22 @@ public class ChatController {
     public String welcomeSubmit(@ModelAttribute ChatUser CUser,
                                 @ModelAttribute Messages mess,
                                // @ModelAttribute List<ChatUser> persons,
-             Model model) {
+                                Model model) {
         model.addAttribute("chatuser", CUser).addAttribute("mess",mess);
         model.addAttribute("persons", persons);
-        persons.add(CUser);
+        if (CUser.getMessage()!=null) {
+            if (CUser.getMessage().equals(""))
+            {
+                mess.setMes("Сообщение не может быть пустым");
+                return "mesq";
+            }
+            persons.add(CUser);
+        }
+        if (CUser.getLogin().equals("")) {
+            mess.setMes("Необходимо указать логин");
+            System.out.println("ЛОГИНА НЕТ POST");
+            return "mesq";
+        }
         System.out.println(Counter.getNum()+" welcome post");
         System.out.println(CUser.getLogin()+" "+CUser.getMessage());
         return "result";

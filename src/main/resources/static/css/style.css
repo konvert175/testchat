@@ -8,15 +8,13 @@ h2 {
 
 table {
     border-collapse: collapse;
+    height:20px
 }
 
 table td {
-    padding: 5px;
+    padding: 1px;
 }
 
 table th{
     padding: 1px;
-}
-table td{
-    width: 10%;
 }

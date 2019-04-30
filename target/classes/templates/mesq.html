@@ -1,17 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handing Form Submission</title>
+    <title>Chat</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" >
 </head>
 <body>
-<h1>frghrth чата</h1>
+<h1>Ошибка чата</h1>
 
 
-<p th:text="'Login: ' + ${mess.mes}" />
+<h2> <p th:text="${mess.mes}"  /></h2>
 
 
+<a href="/welcome">Вернутся на форму ввода логина</a>
 
-<a href="/welcome">rttrtrtrtrtrtrtrtr</a>
 </body>
 </html>

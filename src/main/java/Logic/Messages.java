@@ -4,9 +4,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-
+/**
+   Класс для пересылки сообщений об ошибках
+ */
 @Component
 public class Messages {
+    /** Поле Сообщение */
     private String mes;
     public Messages() {
         Date NowDate = new Date();
@@ -15,7 +18,6 @@ public class Messages {
     }
     public String getMes() {
         System.out.println(Counter.getNum()+" Messages getMes");
-        mes+="2";
         return mes;
     }
 

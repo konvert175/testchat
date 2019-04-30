@@ -19,7 +19,7 @@
 
     <!--    <p th:text="'chatuser.message: ' + ${chatuser.message}" />-->
 
-        <small> <p  th:text="'Mess.mes: ' + ${mess.mes}" /> </small>
+        <small> <p  th:text="'chatuser.datetime: ' + ${chatuser.datetime}" /> </small>
 
 
         <p> <input type="text" th:field="*{login}" hidden /></p><!-- -->
@@ -28,15 +28,15 @@
 </form>
 
 <div>
-    <table border="1" width="90%">
+    <table border="0" width="100%">
         <tr th:each ="person : ${persons}">
-            <td th:utext="${person.login}">...  </td>
+            <!--<td width="10%" th:switch="${chatuser.message}"><p th:case="''"></p><p th:case="*" th:text="${person.login}"></p></td>-->
+            <td width="5%" align="left" th:utext="${person.login}">...  </td>
+            <td width="10%" align="left" th:utext="${person.datetime}">...  </td>
             <!-- <td th:utext="${person.message}">...</td>-->
             <!-- <td th:if="${person.login} != ${chatuser.login}"  th:text="${person.message}"> </td>-->
-            <td th:switch="${person.login}">
-                <p th:case="${chatuser.login}">.  </p>
-                <p th:case="*" th:text="${person.message}">                                         </p>        </td>
-            <td th:if="${person.login} == ${chatuser.login}"  th:text="${person.message}">  </td>
+            <td  width="40%" align="left" th:switch="${person.login}"><p th:case="${chatuser.login}">  </p><p th:case="*" th:text="${person.message}">    </td>                                     </p>        </td>
+            <td  width="45%" align="left"  th:if="${person.login} == ${chatuser.login}"  th:text="${person.message}">  </td>
             </tr>
         </table>
     </div>
