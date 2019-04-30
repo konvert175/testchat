@@ -19,8 +19,6 @@ public class ChatController {
     public String welcomeForm(Model model) {
         model.addAttribute("chatuser", CUser).addAttribute("mess", new Messages());
         model.addAttribute("persons", persons);
-        System.out.println(Counter.getNum()+" welcome get");
-
         return "welcome";
     }
 
@@ -41,28 +39,11 @@ public class ChatController {
         }
         if (CUser.getLogin().equals("")) {
             mess.setMes("Необходимо указать логин");
-            System.out.println("ЛОГИНА НЕТ POST");
             return "mesq";
         }
-        System.out.println(Counter.getNum()+" welcome post");
-        System.out.println(CUser.getLogin()+" "+CUser.getMessage());
-        return "result";
-    }
-    /*
-    @RequestMapping(value="/result", method=RequestMethod.GET)
-    public String resultForm(Model model) {
-        model.addAttribute("chatuser", new ChatUser()).addAttribute("mess", new Messages());
-        System.out.println("result get");
         return "result";
     }
 
-    @RequestMapping(value="/result", method=RequestMethod.POST)
-    public String resultSubmit(@ModelAttribute ChatUser chatuser,@ModelAttribute Messages mess, Model model) {
-        model.addAttribute("chatuser", chatuser).addAttribute("mess",mess);
-        System.out.println("result post");
-        return "result";
-    }
-*/
     @RequestMapping(value="/mesq", method=RequestMethod.GET)
     public String mesqForm(Model model) {
         model.addAttribute("mess", new Messages());
