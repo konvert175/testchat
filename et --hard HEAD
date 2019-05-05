@@ -1,0 +1,47 @@
+[33mcommit a9e1bf24349e2e20655bb11bfd5147b68369ac41[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/chat-v1[m[33m, [m[1;31morigin/feature/chat-v1[m[33m)[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Sun May 5 17:21:22 2019 +0400
+
+    try to add websocket, unfortunately it doesn't work
+
+[33mcommit 40a31301ee242da6c20f1703b91122460344496d[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Fri May 3 00:53:29 2019 +0400
+
+    fix, try to use javascript
+
+[33mcommit e023078d0149fb0bfdfb2fda6527215868a9cefa[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Tue Apr 30 21:30:14 2019 +0400
+
+    Cleaning
+
+[33mcommit 95439d10a011d44115fbc9d227b00f169919245c[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Tue Apr 30 21:23:51 2019 +0400
+
+    some fix
+
+[33mcommit dff43e66319dce69c0dcf290ab2ae872b9f1e46c[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Sun Apr 28 00:02:10 2019 +0400
+
+    add css + current user's messages now on right
+
+[33mcommit b23bfbb02f84dd9491764286485b61b785aab340[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Fri Apr 26 23:59:44 2019 +0400
+
+    now we can chat
+
+[33mcommit 9af5b72ea5d0e60b396889d92e66c7d9dcbac953[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Wed Apr 24 00:23:44 2019 +0400
+
+    second
+
+[33mcommit a6adb86e8a235d03fae5e1f5875169d99392a8d9[m
+Author: Andrey <konvert175@gmail.com>
+Date:   Tue Apr 23 23:34:19 2019 +0400
+
+    first commit

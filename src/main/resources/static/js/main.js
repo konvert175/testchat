@@ -19,6 +19,8 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
+
+
 function connect(event) {
     username = document.querySelector('#name').value.trim();
     alert(username);
