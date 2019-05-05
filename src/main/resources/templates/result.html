@@ -10,7 +10,7 @@
 <h1>Комната чата</h1>
 
 
-<form action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
+<form action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post" id="messageForm" name="messageForm" nameForm="messageForm">
     <h2> <p th:text="'Логин ' + ${chatuser.login}"  /></h2>
 
 
@@ -19,6 +19,9 @@
     <p>Сообщение: <input type="text" th:field="*{message}" /></p>
     <p><input type="submit" value="OK" /> <input type="reset" value="Стереть" /></p>
 </form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/main.js"></script>
 
 <div>
     <table border="0" width="100%">
@@ -31,9 +34,12 @@
         </table>
     </div>
 
+</body>
 
 
 
-    <a href="/welcome">Войти под еще одним пользователем</a>
+
+<a href="/welcome">Войти под еще одним пользователем</a>
+
     </body>
     </html>

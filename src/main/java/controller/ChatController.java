@@ -1,10 +1,15 @@
 package controller;
 
-import entities.ChatUser;
-import entities.Messages;
+import entities.*;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,7 @@ public class ChatController {
                                 @ModelAttribute Messages mess,
                                // @ModelAttribute List<ChatUser> persons,
                                 Model model) {
+        System.out.println("welcomeSubmit");
         model.addAttribute("chatuser", cuser).addAttribute("mess",mess);
         model.addAttribute("persons", persons);
         if ((cuser.getMessage()!=null)&&(!cuser.getMessage().equals(""))) {
@@ -48,4 +54,22 @@ public class ChatController {
         model.addAttribute("mess", new Messages());
         return "mesq";
     }
+
+    @MessageMapping("/chat.sendMessage")
+    @SendTo("/topic/public")
+    public Messages sendMessage(@Payload Messages chatMessage) {
+        return chatMessage;
+    }
+
+    @MessageMapping("/chat.addUser")
+    @SendTo("/topic/public")
+    public Messages addUser(@Payload Messages chatMessage,
+                               SimpMessageHeaderAccessor headerAccessor) {
+        // Add username in web socket session
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        System.out.println("1");
+        System.out.println("12  "+chatMessage.getSender());
+        return chatMessage;
+    }
+
 }

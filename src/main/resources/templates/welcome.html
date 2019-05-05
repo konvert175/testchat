@@ -6,12 +6,22 @@
     <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" >
 </head>
 <body>
+<div id="username-page">
 <h1>Страница регистрации</h1>
-<form action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
+<form id="usernameForm" name="usernameForm" action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
     <!-- <p>Login: <input type="text" th:field="*{login}" /></p>-->
-     <p>Введите логин: <input type="text" id = "textInput" th:field="*{login}" /></p>
-     <p><input type="submit" value="OK" /> <input type="reset" value="Стереть" /></p>
- </form>
+     <p>Введите логин: <input type="text" id = "name" th:field="*{login}" placeholder="Логин"  /></p>
+    <input type="submit" value="Ok" /></p>           <input type="reset" value="Стереть" /></p>
+
+    </form>
+   </div>
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/main.js"></script>
+-->
 
  </body>
+
+
  </html>
