@@ -12,21 +12,21 @@ public class Messages {
     /**
      * Поле Сообщение
      */
+    @Getter
+    @Setter
     private String mes;
     @Getter
     @Setter
     private String sender;
+    @Getter
+    @Setter
+    private String type;
+    @Getter
+    @Setter
+    private String context;
 
     public Messages() {
         Date nowDate = new Date();
         mes = nowDate.toString();
-    }
-
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
     }
 }

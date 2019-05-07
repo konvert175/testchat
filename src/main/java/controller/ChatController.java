@@ -19,6 +19,10 @@ public class ChatController {
 
     List<ChatUser> persons = new ArrayList<>();
     ChatUser cuser = new ChatUser();
+    {
+        persons.add(new ChatUser("3","34"));
+    }
+
 
     @GetMapping(value="/welcome")
     public String welcomeForm(Model model) {
@@ -46,7 +50,7 @@ public class ChatController {
             mess.setMes("Логин не может содержать пробелы/состоять из пробелов");
             return "mesq";
         }
-        return "result";
+        return "welcome";
     }
 
     @GetMapping(value="/mesq")
@@ -58,6 +62,9 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Messages sendMessage(@Payload Messages chatMessage) {
+        System.out.println("Сообщение   "+chatMessage.getSender());
+        ChatUser cuser2 = new ChatUser("111",chatMessage.getSender());
+        persons.add(cuser2);
         return chatMessage;
     }
 
@@ -67,8 +74,7 @@ public class ChatController {
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        System.out.println("1");
-        System.out.println("12  "+chatMessage.getSender());
+        System.out.println("Пользователь   "+chatMessage.getSender());
         return chatMessage;
     }
 
