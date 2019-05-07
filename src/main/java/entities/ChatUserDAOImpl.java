@@ -9,22 +9,23 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository
-public class ChatUserDAOImpl extends JdbcDaoSupport {
-    private DataSource dataSource;
+//@Repository
+public class ChatUserDAOImpl //extends JdbcDaoSupport
+{
+   /* private DataSource dataSource;
 
     @Autowired
     public ChatUserDAOImpl(DataSource dataSource) {
         this.setDataSource(dataSource);
     }
-
-    public List<String> getUserlogins() {
-
+*/
+    public void /*List<String>*/ getUserlogins() {
+/*
         String sql = "select User_login from UserTable ";
 
         // queryForList(String sql, Class<T> elementType)
-        List<String> list = this.getJdbcTemplate().queryForList(sql, String.class);
+        List<String> list ;//= this.getJdbcTemplate().queryForList(sql, String.class);
 
-        return list;
+        return list;*/
     }
 }

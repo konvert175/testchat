@@ -18,13 +18,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Properties;
-
+/*
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("config")
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories("entities")
-public class AppConfiguration {
+@EnableJpaRepositories("entities")*/
+public class AppConfiguration {/*
     private static final String PROP_DATABASE_DRIVER = "db.driver";
     private static final String PROP_DATABASE_PASSWORD = "db.password";
     private static final String PROP_DATABASE_URL = "db.url";
@@ -66,5 +66,5 @@ public class AppConfiguration {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
-    }
+    }*/
 }

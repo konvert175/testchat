@@ -13,18 +13,18 @@ import java.util.List;
 @ComponentScan("logic,entities,controller,config")
 @EnableAutoConfiguration
 public class Application {
-
+/*
     protected Class<?>[] getRootConfigClasses()
     {
         return new Class<?>[]{
                 AppConfiguration.class
         };
-    }
+    }*/
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
         System.out.println("))((");
 
-
+/*
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
         ChatUserDAOImpl dao = context.getBean(ChatUserDAOImpl.class);
 
@@ -34,6 +34,8 @@ public class Application {
 
             System.out.println("Dept Name: " + name);
         }
+
+ */
     }
 
 
