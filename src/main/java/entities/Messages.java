@@ -17,16 +17,24 @@ public class Messages {
     private String mes;
     @Getter
     @Setter
+    private String username;
+    @Getter
+    @Setter
     private String sender;
     @Getter
     @Setter
     private String type;
     @Getter
     @Setter
-    private String context;
+    private String content;
 
     public Messages() {
         Date nowDate = new Date();
         mes = nowDate.toString();
+    }
+
+    @Override
+    public String toString() {
+        return " mes: "+mes+"  username: "+username+"  sender: "+sender+"  type: "+type+"  content: "+content;
     }
 }

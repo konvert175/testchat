@@ -8,6 +8,8 @@ var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#mes');
 var messageArea = document.querySelector('#messageArea');
+var tableArea = document.querySelector("tableArea");
+
 var connectingElement = document.querySelector('.connecting');
 
 var messageForm2 = document.querySelector('#messageForm2');
@@ -38,11 +40,12 @@ function onConnected() {
  ///   alert("We are connected to WebSocket2")
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
-
+    usernamePage.classList.add('hidden');
+    chatPage.classList.remove('hidden');
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
-        JSON.stringify({sender: username, type: 'JOIN'})
+        JSON.stringify({sender: username, type: username})
     )
 
   //  connectingElement.classList.add('hidden');
@@ -50,8 +53,7 @@ function onConnected() {
 
 
 function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
+
     alert("Could not connect to WebSocket")
 }
 
@@ -62,12 +64,13 @@ function sendMessage(event) {
    // alert("sendMessage2   messageInput.value  "+messageInput.value);
 
     messag = document.querySelector('#mes').value.trim();
+    username = document.querySelector('#name').value.trim();
 
     if(messageContent && stompClient) {
         var chatMessage = {
             sender: messag,
             content: messageInput.value,
-            type: 'CHAT'
+            username: username
         };
 
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
@@ -81,39 +84,24 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
    // alert("onMessageReceived   "+message.sender);
 
-    var messageElement = document.createElement('li');
-/*
-    if(message.type === 'JOIN') {
-        messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
-    } else if (message.type === 'LEAVE') {
-        messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
-    } else {
-        messageElement.classList.add('chat-message');
-
-        var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
-        avatarElement.appendChild(avatarText);
-
-        messageElement.appendChild(avatarElement);
+    var tbody = document.getElementById("tableArea").getElementsByTagName("TBODY")[0];
+    var row = document.createElement("TR");
+    var td1 = document.createElement("TD");
+    td1.appendChild(document.createTextNode(message.username));
+    var td2 = document.createElement("TD");
+    td2.appendChild (document.createTextNode(message.mes));
+    var td3 = document.createElement("TD");
+    td3.appendChild (document.createTextNode(message.sender));
+    row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+    tbody.appendChild(row);
 
 
-    }*/
-    var usernameElement = document.createElement('p');
-    var usernameText = document.createTextNode(username +"     "+message.mes+"     "+message.sender+"      "+message.type);
-    usernameElement.appendChild(usernameText);
-    messageElement.appendChild(usernameElement);
 
-/*
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
 
-    messageElement.appendChild(textElement);*/
 
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
+   // messageArea.scrollTop = messageArea.scrollHeight;
 }
 
 

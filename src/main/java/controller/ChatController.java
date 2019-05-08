@@ -62,9 +62,8 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Messages sendMessage(@Payload Messages chatMessage) {
-        System.out.println("Сообщение   "+chatMessage.getSender());
-        ChatUser cuser2 = new ChatUser("111",chatMessage.getSender());
-        persons.add(cuser2);
+        System.out.println("Сообщение   "+ chatMessage.toString());
+        persons.add(new ChatUser(chatMessage.getUsername(),chatMessage.getSender()));
         return chatMessage;
     }
 
@@ -74,8 +73,9 @@ public class ChatController {
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        System.out.println("Пользователь   "+chatMessage.getSender());
-        return chatMessage;
+       // System.out.println("Пользователь   "+chatMessage.getSender());
+       // return chatMessage;
+        return null;
     }
 
 }
