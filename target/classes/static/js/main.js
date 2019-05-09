@@ -23,13 +23,15 @@ var messag = null;
 function connect(event) {
     username = document.querySelector('#name').value.trim();
    // alert(username);
-    if(username) {
-       // usernamePage.classList.add('hidden');
-       /// chatPage.classList.remove('hidden');
-
+    if(username && username.indexOf(' ')==-1)
+    {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
+    }
+    else
+    {
+        alert("Логин не может содержать пробелы или быть пустым")
     }
     event.preventDefault();
 }

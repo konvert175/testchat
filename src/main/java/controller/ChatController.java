@@ -20,7 +20,7 @@ public class ChatController {
     List<ChatUser> persons = new ArrayList<>();
     ChatUser cuser = new ChatUser();
     {
-        persons.add(new ChatUser("3","34"));
+        persons.add(new ChatUser("",""));
     }
 
 
@@ -62,7 +62,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Messages sendMessage(@Payload Messages chatMessage) {
-        System.out.println("Сообщение   "+ chatMessage.toString());
+       // System.out.println("Сообщение   "+ chatMessage.toString());
         persons.add(new ChatUser(chatMessage.getUsername(),chatMessage.getSender()));
         return chatMessage;
     }
