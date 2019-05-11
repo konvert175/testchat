@@ -10,7 +10,7 @@
 <div id="username-page">
 <h1>Страница регистрации</h1>
 <form id="usernameForm" name="usernameForm" action="#" th:action="@{/welcome}" th:object="${chatuser}" method="post">
-    <!-- <p>Login: <input type="text" th:field="*{login}" /></p>-->
+
      <p>Введите логин: <input type="text" id = "name" th:field="*{login}" placeholder="Логин"  /></p>
     <input type="submit" value="Подключиться к чату" /></p>           <input type="reset" value="Стереть" /></p>
 </form>
@@ -21,7 +21,6 @@
 
     <h1>Комната чата</h1>
     <form id="messageForm" name="messageForm" nameForm="messageForm">
-        <!-- <p> <input type="text" /></p>-->
     <p>Сообщение: <input type="text" id="mes" name ="mes" /></p>
     <p><input type="submit" value="Отправить" />    </p>
 
@@ -38,9 +37,6 @@
         </table>
     </div>
 
-
-
-    <!-- <p><input type="submit" value="отобразить" />    </p>-->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>

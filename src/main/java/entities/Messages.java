@@ -3,38 +3,33 @@ package entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Класс для пересылки сообщений об ошибках
+ * Класс для пересылки сообщений по Websocket
  */
 public class Messages {
+    private static final String DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
     /**
      * Поле Сообщение
      */
     @Getter
     @Setter
-    private String mes;
+    private String message;
+    @Getter
+    @Setter
+    private String datatime;
     @Getter
     @Setter
     private String username;
-    @Getter
-    @Setter
-    private String sender;
-    @Getter
-    @Setter
-    private String type;
-    @Getter
-    @Setter
-    private String content;
-
     public Messages() {
-        Date nowDate = new Date();
-        mes = nowDate.toString();
+        datatime = new SimpleDateFormat(DATE_FORMAT).format(new Date());
+       // message = new SimpleDateFormat(DATE_FORMAT).format(new Date());
     }
 
     @Override
     public String toString() {
-        return " mes: "+mes+"  username: "+username+"  sender: "+sender+"  type: "+type+"  content: "+content;
+        return " mes: "+message+"  username: "+username;
     }
 }

@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * Класс для хранения инфы пользователь-сообщения
+ */
 public class ChatUser {
     private static final String DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
     @Getter

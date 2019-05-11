@@ -21,6 +21,7 @@ public class ChatController {
     ChatUser cuser = new ChatUser();
     {
         persons.add(new ChatUser("",""));
+        persons.get(0).setDatetime("Сообщения");
     }
 
 
@@ -43,11 +44,11 @@ public class ChatController {
                 persons.add(cuser);
         }
         if (cuser.getLogin().equals("")) {
-            mess.setMes("Необходимо указать логин");
+            mess.setMessage("Необходимо указать логин");
             return "mesq";
         }
         if (cuser.getLogin().contains(" ")) {
-            mess.setMes("Логин не может содержать пробелы/состоять из пробелов");
+            mess.setMessage("Логин не может содержать пробелы/состоять из пробелов");
             return "mesq";
         }
         return "welcome";
@@ -62,8 +63,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Messages sendMessage(@Payload Messages chatMessage) {
-       // System.out.println("Сообщение   "+ chatMessage.toString());
-        persons.add(new ChatUser(chatMessage.getUsername(),chatMessage.getSender()));
+        persons.add(new ChatUser(chatMessage.getUsername(),chatMessage.getMessage()));
         return chatMessage;
     }
 
@@ -71,10 +71,7 @@ public class ChatController {
     @SendTo("/topic/public")
     public Messages addUser(@Payload Messages chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
-        // Add username in web socket session
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-       // System.out.println("Пользователь   "+chatMessage.getSender());
-       // return chatMessage;
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getUsername());
         return null;
     }
 
