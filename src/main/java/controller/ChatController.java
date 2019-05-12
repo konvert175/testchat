@@ -1,6 +1,7 @@
 package controller;
 
 import entities.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -66,12 +67,31 @@ public class ChatController {
         persons.add(new ChatUser(chatMessage.getUsername(),chatMessage.getMessage()));
         return chatMessage;
     }
+   /* @Autowired
+    private UserRepository repository;*/
 
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public Messages addUser(@Payload Messages chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getUsername());
+/*
+        repository.save(new User("User1"));
+        repository.save(new User("User2"));
+        repository.save(new User("User3"));
+        System.out.println("           =============          "+repository.findByName("Python").toString());
+
+        System.out.println("\nfindAll()");
+        repository.findAll().forEach(x -> System.out.println(x));
+
+        System.out.println("\nfindById(1L)");
+        repository.findById(1l).ifPresent(x -> System.out.println(x));
+
+        System.out.println("\nfindByName('Node')");
+        repository.findByName("Node").forEach(x -> System.out.println(x));
+*/
+
+
         return null;
     }
 
