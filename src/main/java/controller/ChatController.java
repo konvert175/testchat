@@ -67,15 +67,15 @@ public class ChatController {
         persons.add(new ChatUser(chatMessage.getUsername(),chatMessage.getMessage()));
         return chatMessage;
     }
-    @Autowired
-    private UserRepository repository;
+    /*@Autowired
+    private UserRepository repository;*/
 
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public Messages addUser(@Payload Messages chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getUsername());
-
+/*
         repository.save(new User("User1"));
         repository.save(new User("User2"));
         repository.save(new User("User3"));
@@ -90,7 +90,7 @@ public class ChatController {
         System.out.println("\nfindByName('Node')");
         repository.findByName("Node").forEach(x -> System.out.println(x));
 
-
+*/
 
         return null;
     }

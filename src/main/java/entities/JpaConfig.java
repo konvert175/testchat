@@ -2,6 +2,7 @@ package entities;
 
 
 import org.hibernate.ejb.HibernatePersistence;
+import org.hibernate.dialect.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -40,10 +41,10 @@ public class JpaConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName(env.getRequiredProperty(PROP_DATABASE_DRIVER));
-        dataSource.setUrl(env.getRequiredProperty(PROP_DATABASE_URL));
-        dataSource.setUsername(env.getRequiredProperty(PROP_DATABASE_USERNAME));
-        dataSource.setPassword(env.getRequiredProperty(PROP_DATABASE_PASSWORD));
+        dataSource.setDriverClassName(env.getRequiredProperty("db.driver"));
+        dataSource.setUrl(env.getRequiredProperty("db.url"));
+        dataSource.setUsername(env.getRequiredProperty("db.username"));
+        dataSource.setPassword(env.getRequiredProperty("db.password"));
 
         return dataSource;
     }
@@ -53,9 +54,9 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
-        entityManagerFactoryBean.setPackagesToScan(env.getRequiredProperty(PROP_ENTITYMANAGER_PACKAGES_TO_SCAN));
+        entityManagerFactoryBean.setPackagesToScan(env.getRequiredProperty("db.entitymanager.packages.to.scan"));
 
-        entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
+        entityManagerFactoryBean.setJpaProperties(hibernateProperties());
 
         return entityManagerFactoryBean;
     }
@@ -70,10 +71,22 @@ public class JpaConfig {
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty("org.hibernate.dialect.PostgreSQL9Dialect"));
-        properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
+        properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty("db.hibernate.dialect"));
+        properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty("db.hibernate.show_sql"));
+        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty( "db.hibernate.hbm2ddl.auto"));
 
+        return properties;
+    }
+
+    private Properties hibernateProperties()
+    {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect",
+                env.getRequiredProperty("db.hibernate.dialect"));
+        properties.put("hibernate.hbm2ddl.auto",
+                env.getRequiredProperty("db.hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.show_sql",
+                env.getRequiredProperty("db.hibernate.show_sql"));
         return properties;
     }
 
